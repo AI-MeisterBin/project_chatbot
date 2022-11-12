@@ -30,10 +30,10 @@ data = load_dataset()
 sl.header('심리상담 챗봇')
 
 if 'past' not in sl.session_state:
-    sl.session_state['talk_user'] = []
+    sl.session_state['past'] = []
 
 if 'generated' not in sl.session_state:
-    sl.session_state['talk_bot'] = []
+    sl.session_state['generated'] = []
    
 placeholder = sl.empty()
 
@@ -48,7 +48,7 @@ if submitted and user_input:
     sl.session_state.generated.append(answer)
 
 with placeholder.container(): # 리스트에 append된 채팅입력과 로봇출력을 리스트에서 꺼내서 메세지로 출력
-        for i in range(len(sl.session_state['talk_user'])):
-            message(sl.session_state['talk_user'][i], is_user=True, key=str(i) + '_user')
-            if len(sl.session_state['talk_bot']) > i:
-                message(sl.session_state['talk_bot'][i], key=str(i) + '_bot')
+        for i in range(len(sl.session_state['past'])):
+            message(sl.session_state['past'][i], is_user=True, key=str(i) + '_user')
+            if len(sl.session_state['generated']) > i:
+                message(sl.session_state['generated'][i], key=str(i) + '_bot')
