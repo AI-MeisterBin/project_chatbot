@@ -23,8 +23,8 @@ def load_dataset():
     dc8 = pd.read_csv('chatbot_dataset_t8.csv')
     dc9 = pd.read_csv('chatbot_dataset_t9.csv')
     dc10 = pd.read_csv('chatbot_dataset_t10.csv')
-    dc10 = pd.read_csv('chatbot_dataset_t11.csv')
-    dc10 = pd.read_csv('chatbot_dataset_t12.csv')
+    dc11 = pd.read_csv('chatbot_dataset_t11.csv')
+    dc12 = pd.read_csv('chatbot_dataset_t12.csv')
     data = pd.concat([data,dc1,dc2,dc3,dc4,dc5,dc6,dc7,dc8,dc9,dc10,dc11,dc12], ignore_index=True)
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
