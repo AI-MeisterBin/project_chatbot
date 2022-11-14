@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer # SentenceBERT
 from sklearn.metrics.pairwise import cosine_similarity # 챗봇의 유사도 계산\
 import streamlit as sl
 from streamlit_chat import message
-from google import drive
+from embedding_chatbot.py import embedding
 import json
 
 @sl.cache(allow_output_mutation=True)
@@ -12,9 +12,8 @@ def load_model():
     return model
 
 @sl.cache(allow_output_mutation=True)
-def load_dataset():
-    drive.mount("/gdrive")
-    data = pd.read_csv('/gdrive/MyDrive/chat_bot_dataset/chatbot_dataset_v4.csv')
+def load_dataset(model):
+    data = embedding(model)
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
 
@@ -27,7 +26,7 @@ def get_answer(model, user_input):
     return answer['챗봇']
 
 model = load_model()
-data = load_dataset()
+data = load_dataset(model)
 
 sl.header('심리상담 챗봇')
 
