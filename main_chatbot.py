@@ -3,6 +3,7 @@ from sentence_transformers import SentenceTransformer # SentenceBERT
 from sklearn.metrics.pairwise import cosine_similarity # 챗봇의 유사도 계산\
 import streamlit as sl
 from streamlit_chat import message
+from google.colab import drive
 import json
 
 @sl.cache(allow_output_mutation=True)
@@ -12,7 +13,8 @@ def load_model():
 
 @sl.cache(allow_output_mutation=True)
 def load_dataset():
-    data = pd.read_csv('chatbot_dataset_v3.csv')
+    drive.mount("/gdrive")
+    data = pd.read_csv('/gdrive/MyDrive/chat_bot_dataset/chatbot_dataset_v4.csv')
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
 
