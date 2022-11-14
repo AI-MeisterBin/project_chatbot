@@ -12,8 +12,19 @@ def load_model():
     return model
 
 @sl.cache(allow_output_mutation=True)
-def load_dataset(model):
-    data = embedding(model)
+def load_dataset():
+    data = pd.read_csv('chatbot_dataset_v3.csv')
+    dc1 = pd.read_csv('chatbot_dataset_t1.csv')
+    dc2 = pd.read_csv('chatbot_dataset_t2.csv')
+    dc3 = pd.read_csv('chatbot_dataset_t3.csv')
+    dc4 = pd.read_csv('chatbot_dataset_t4.csv')
+#     dc5 = pd.read_csv('chatbot_dataset_t5.csv')
+#     dc6 = pd.read_csv('chatbot_dataset_t6.csv')
+#     dc7 = pd.read_csv('chatbot_dataset_t7.csv')
+#     dc8 = pd.read_csv('chatbot_dataset_t8.csv')
+#     dc9 = pd.read_csv('chatbot_dataset_t9.csv')
+#     dc10 = pd.read_csv('chatbot_dataset_t10.csv')
+    data = pd.concat([data,dc1,dc2,dc3,dc4], ignore_index=True)
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
 
@@ -26,7 +37,7 @@ def get_answer(model, user_input):
     return answer['챗봇']
 
 model = load_model()
-data = load_dataset(model)
+data = load_dataset()
 
 sl.header('심리상담 챗봇')
 
