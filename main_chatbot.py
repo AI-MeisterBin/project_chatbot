@@ -41,6 +41,7 @@ model = load_model()
 data = load_dataset()
 
 sl.header('심리상담 챗봇')
+sl.subheader('made by 조경빈')
 
 if 'past' not in sl.session_state:
     sl.session_state['past'] = []
