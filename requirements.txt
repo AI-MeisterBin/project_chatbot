@@ -1,4 +1,4 @@
 pandas
 sentence_transformers
 streamlit_chat
-google
+google.colab
