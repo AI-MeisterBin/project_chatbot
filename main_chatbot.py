@@ -3,7 +3,7 @@ from sentence_transformers import SentenceTransformer # SentenceBERT
 from sklearn.metrics.pairwise import cosine_similarity # 챗봇의 유사도 계산\
 import streamlit as sl
 from streamlit_chat import message
-from google.colab import drive
+from google import drive
 import json
 
 @sl.cache(allow_output_mutation=True)
