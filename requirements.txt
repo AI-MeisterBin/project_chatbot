@@ -1,3 +1,4 @@
 pandas
 sentence_transformers
 streamlit_chat
+google.colab
