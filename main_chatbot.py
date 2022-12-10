@@ -51,7 +51,7 @@ if 'past' not in sl.session_state:
 
 if 'generated' not in sl.session_state:
     sl.session_state['generated'] = []
-    sl.session_state.generated.append("안녕하세요 당신의 심리상담가 메아리입니다.\n편하게 뭐든지 말씀해보세요. ")
+    sl.session_state.generated.append("안녕하세요 당신의 심리상담가 메아리입니다. 편하게 뭐든지 말씀해보세요. ")
    
 placeholder = sl.empty()
 
@@ -65,10 +65,10 @@ if submitted and user_input:
     sl.session_state.past.append(user_input)
     sl.session_state.generated.append(answer)
     
-message(sl.session_state['generated'][0], key=str(0) + '_bot')
+#message(sl.session_state['generated'][0], key=str(0) + '_bot')
 
 with placeholder.container(): # 리스트에 append된 채팅입력과 로봇출력을 리스트에서 꺼내서 메세지로 출력
-        for i in range(len(sl.session_state['generated'])-1):
-            message(sl.session_state['generated'][i+1], key=str(i+1) + '_bot')
+        for i in range(len(sl.session_state['generated'])):
+            message(sl.session_state['generated'][i], key=str(i) + '_bot')
             if len(sl.session_state['past']) > i:
                 message(sl.session_state['past'][i], is_user=True, key=str(i) + '_user')
