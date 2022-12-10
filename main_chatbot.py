@@ -67,6 +67,6 @@ if submitted and user_input:
 
 with placeholder.container(): # 리스트에 append된 채팅입력과 로봇출력을 리스트에서 꺼내서 메세지로 출력
         for i in range(len(sl.session_state['generated'])-1):
-            message(sl.session_state['generated'][i+1], key=str(i+) + '_bot')
+            message(sl.session_state['generated'][i+1], key=str(i) + '_bot')
             if len(sl.session_state['past']) > i:
                 message(sl.session_state['past'][i], is_user=True, key=str(i) + '_user')
