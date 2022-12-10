@@ -51,7 +51,7 @@ if 'past' not in sl.session_state:
 
 if 'generated' not in sl.session_state:
     sl.session_state['generated'] = []
-    sl.session_state['generated'][0] = "안녕하세요 당신의 심리상담가 메아리입니다. 편하게 뭐든지 말씀해보세요. "
+    sl.session_state.generated.append("안녕하세요 당신의 심리상담가 메아리입니다. 편하게 뭐든지 말씀해보세요. ")
    
 placeholder = sl.empty()
 
