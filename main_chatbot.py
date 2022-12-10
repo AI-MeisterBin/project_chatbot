@@ -36,13 +36,9 @@ def get_answer(model, user_input):
     data['distance'] = data['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze())
     answer = data.loc[data['distance'].idxmax()]
     if (answer['distance'] > 0.8)
-    {
         return answer['챗봇']
-    }
     else
-    {
         return "잘 이해하지 못했어요. 좀 더 자세히 말씀 해주시겠어요?"
-    }
     
 model = load_model()
 data = load_dataset()
