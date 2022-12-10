@@ -34,13 +34,20 @@ def get_answer(model, user_input):
     embedding = model.encode(user_input)
 
     data['distance'] = data['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze())
-    answer = data.loc[data['distance'].idxmax()]
-    return answer['챗봇']
-
+    if (data['distance'].idmax() > 0.8)
+    {
+        answer = data.loc[data['distance'].idxmax()]
+        return answer['챗봇']
+    }
+    else
+    {
+        return "잘 이해하지 못했어요. 좀 더 자세히 말씀 해주시겠어요?"
+    }
+    
 model = load_model()
 data = load_dataset()
 
-sl.header('심리상담 챗봇')
+sl.header('심리상담 챗봇 - 메아리')
 sl.subheader('made by 조경빈')
 
 if 'past' not in sl.session_state:
@@ -62,6 +69,7 @@ if submitted and user_input:
     sl.session_state.generated.append(answer)
 
 with placeholder.container(): # 리스트에 append된 채팅입력과 로봇출력을 리스트에서 꺼내서 메세지로 출력
+    message("안녕하세요 당신의 심리상담가 메어리입니다. 편하게 뭐든지 말씀해보세요. ", key=1 + '_bot')
         for i in range(len(sl.session_state['past'])):
             message(sl.session_state['past'][i], is_user=True, key=str(i) + '_user')
             if len(sl.session_state['generated']) > i:
