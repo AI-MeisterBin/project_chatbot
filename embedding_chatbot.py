@@ -2,7 +2,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer # SentenceBERT
 from sklearn.metrics.pairwise import cosine_similarity # 챗봇의 유사도 계산
 
-model = SentenceTransformer('jhgan/ko-sroberta-multitask') # transformer모듈
+model = SentenceTransformer('AI-MeisterBin/ko-sentence-bert-MeisterBin') # transformer모듈
 
 def embedding(model):
   # 심리상담 데이터 불러오기
