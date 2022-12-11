@@ -7,7 +7,7 @@ import json
 
 @sl.cache(allow_output_mutation=True)
 def load_model(): # 모델 로드
-    model = SentenceTransformer('jhgan/ko-sroberta-multitask')
+    model = SentenceTransformer('AI-MeisterBin/ko-sentence-bert-MeisterBin')
     return model
 
 @sl.cache(allow_output_mutation=True)
