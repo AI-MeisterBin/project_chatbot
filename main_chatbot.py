@@ -18,14 +18,14 @@ def load_dataset_chat(): # 데이터 로드
     dc3 = pd.read_csv('chatbot_dataset_f3.csv')
     dc4 = pd.read_csv('chatbot_dataset_f4.csv')
     dc5 = pd.read_csv('chatbot_dataset_f5.csv')
-    #dc6 = pd.read_csv('chatbot_dataset_f6.csv')
+    dc6 = pd.read_csv('chatbot_dataset_f6.csv')
     dc7 = pd.read_csv('chatbot_dataset_f7.csv')
     dc8 = pd.read_csv('chatbot_dataset_f8.csv')
     dc9 = pd.read_csv('chatbot_dataset_f9.csv')
     dc10 = pd.read_csv('chatbot_dataset_f10.csv')
     dc11 = pd.read_csv('chatbot_dataset_f11.csv')
     dc12 = pd.read_csv('chatbot_dataset_f12.csv')
-    data = pd.concat([data,dc1,dc2,dc3,dc4,dc5,dc7,dc8,dc9,dc10,dc11,dc12], ignore_index=True) # 데이터 합치기
+    data = pd.concat([data,dc1,dc2,dc3,dc4,dc5,dc6,dc7,dc8,dc9,dc10,dc11,dc12], ignore_index=True) # 데이터 합치기
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
 
