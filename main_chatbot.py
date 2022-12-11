@@ -11,8 +11,8 @@ def load_model(): # 모델 로드
     return model
 
 @sl.cache(allow_output_mutation=True)
-def load_dataset(): # 데이터 로드
-    data = pd.read_csv('chatbot_dataset_well.csv')
+def load_dataset_chat(): # 데이터 로드
+    data = pd.read_csv('chatbot_dataset_f13.csv')
     dc1 = pd.read_csv('chatbot_dataset_f1.csv')
     dc2 = pd.read_csv('chatbot_dataset_f2.csv')
     dc3 = pd.read_csv('chatbot_dataset_f3.csv')
@@ -30,19 +30,31 @@ def load_dataset(): # 데이터 로드
     return data
 
 @sl.cache(allow_output_mutation=True)
+def load_dataset_well(): # 데이터 로드
+    data = pd.read_csv('chatbot_dataset_well_f2.csv')
+    data['embedding'] = data['embedding'].apply(json.loads)
+    return data
+
+@sl.cache(allow_output_mutation=True)
 def get_answer(model, user_input): # 입력에 따라 답 출력
+    data_well = load_dataset_well()
+    data_chat = load_dataset_chat()
     embedding = model.encode(user_input) # 입력 임베딩
 
-    data['distance'] = data['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze()) # 학습 데이터와 비교
-    answer = data.loc[data['distance'].idxmax()] # 제일 유사도가 높은 값 저장
-    if answer['distance'] > 0.7: # 유사도가 0.8 이상이면 답 출력
+    data_well['distance'] = data_well['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze()) # 학습 데이터와 비교
+    answer = data_well.loc[data_well['distance'].idxmax()] # 제일 유사도가 높은 값 저장
+    if answer['distance'] > 0.8: # 유사도가 0.8 이상이면 답 출력
         return answer['챗봇']
     else: 
-        return "잘 이해하지 못했어요. 좀 더 자세히 말씀 해주시겠어요?"
+        data_chat['distance'] = data_chat['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze()) # 학습 데이터와 비교
+        answer = data_chat.loc[data_chat['distance'].idxmax()] # 제일 유사도가 높은 값 저장
+        if answer['distance'] > 0.8: # 유사도가 0.8 이상이면 답 출력
+            return answer['챗봇']
+        else: 
+            return "잘 이해하지 못했어요. 좀 더 자세히 말씀 해주시겠어요?"
 
 # 함수 불러오기
 model = load_model()
-data = load_dataset()
 
 # 사이트의 헤더와 보조헤더 추력
 sl.header('심리상담 챗봇 - 메아리') #챗
