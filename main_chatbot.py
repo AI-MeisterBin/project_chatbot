@@ -12,7 +12,7 @@ def load_model(): # 모델 로드
 
 @sl.cache(allow_output_mutation=True)
 def load_dataset(): # 데이터 로드
-    data = pd.read_csv('chatbot_dataset_v3.csv')
+    data = pd.read_csv('chatbot_dataset_f13.csv')
     dc1 = pd.read_csv('chatbot_dataset_f1.csv')
     dc2 = pd.read_csv('chatbot_dataset_f2.csv')
     dc3 = pd.read_csv('chatbot_dataset_f3.csv')
