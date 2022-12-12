@@ -48,7 +48,7 @@ def get_answer(model, user_input): # 입력에 따라 답 출력
     else: 
         data_chat['distance'] = data_chat['embedding'].map(lambda x: cosine_similarity([embedding], [x]).squeeze()) # 학습 데이터와 비교
         answer = data_chat.loc[data_chat['distance'].idxmax()] # 제일 유사도가 높은 값 저장
-        if answer['distance'] > 0.7: # 유사도가 0.8 이상이면 답 출력
+        if answer['distance'] > 0.8: # 유사도가 0.8 이상이면 답 출력
             return answer['챗봇']
         else: 
             return "잘 이해하지 못했어요. 좀 더 자세히 말씀 해주시겠어요?"
