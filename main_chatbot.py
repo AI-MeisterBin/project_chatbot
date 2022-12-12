@@ -56,8 +56,8 @@ def get_answer(model, user_input): # 입력에 따라 답 출력
 # 함수 불러오기
 model = load_model()
 
-# 사이트의 헤더와 보조헤더 추력
-sl.header('심리상담 챗봇 - 메아리') #챗
+# 사이트의 헤더와 보조헤더 출력
+sl.header('심리상담 챗봇 - 메아리') 
 sl.subheader('made by 조경빈')
 
 # 유저의 입력과 챗봇의 답변을 저장
