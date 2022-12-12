@@ -11,7 +11,7 @@ def load_model(): # 모델 로드
     return model
 
 @sl.cache(allow_output_mutation=True)
-def load_dataset_chat(): # 데이터 로드
+def load_dataset_chat(): # 데이터 로드 일반 데이터
     data = pd.read_csv('chatbot_dataset_f13.csv')
     dc1 = pd.read_csv('chatbot_dataset_f1.csv')
     dc2 = pd.read_csv('chatbot_dataset_f2.csv')
@@ -30,7 +30,7 @@ def load_dataset_chat(): # 데이터 로드
     return data
 
 @sl.cache(allow_output_mutation=True)
-def load_dataset_well(): # 데이터 로드
+def load_dataset_well(): # 데이터 로드 중요 
     data = pd.read_csv('chatbot_dataset_well_f2.csv')
     data['embedding'] = data['embedding'].apply(json.loads)
     return data
